@@ -1,19 +1,27 @@
 ---
-- hosts:
-  - 127.0.0.1 
+- name: Spin up some EC2 instances
+  hosts: 127.0.0.1
   connection: local
-  gather_facts: False  
   tasks:
-  vars:
-     keypair: ansible-test
-     instance_type: t2.micro
-     security_group: launch-wizard-9
-  tasks:
-  - name: Launch new EC2 instance
-  local_action: ec2
-      keypair={{keypair}}
-      group={{security_group}}
-      instance_type={{instance_type}}
-      wait=true
-  register: ec2    
+    - name: Create security group
+      local_action:
+        module: ec2_group
+        name: my-security-group
+        description: Access my-security-group
+        region: us-west-2
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 0.0.0.0/0
 
+    - name: Launch instances
+      local_action:
+        module: ec2
+        region: us-west-2
+        keypair: ansible-test 
+        group: my-security-group
+        instance_type: t2.micro
+        count: 2 
+        wait: yes
+       #register: ec2_info
