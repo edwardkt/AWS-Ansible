@@ -1,0 +1,19 @@
+---
+- hosts:
+  - 127.0.0.1 
+  connection: local
+  gather_facts: False  
+  tasks:
+  vars:
+     keypair: ansible-test
+     instance_type: t2.micro
+     security_group: launch-wizard-9
+  tasks:
+  - name: Launch new EC2 instance
+  local_action: ec2
+      keypair={{keypair}}
+      group={{security_group}}
+      instance_type={{instance_type}}
+      wait=true
+  register: ec2    
+
