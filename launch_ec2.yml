@@ -6,7 +6,7 @@
     - name: Create security group
       local_action:
         module: ec2_group
-        name: my-security-group
+        name: ansible-test 
         description: Access my-security-group
         region: us-west-2
         rules:
@@ -21,7 +21,7 @@
         region: us-west-2
         image: ami-f9165ec9
         keypair: ansible-test 
-        group: my-security-group
+        group: ansible-test 
         instance_type: t2.micro
         count: 2 
         wait: yes
