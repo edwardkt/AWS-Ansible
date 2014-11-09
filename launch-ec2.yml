@@ -1,7 +1,6 @@
 ---
 - name: Spin up some EC2 instances
-  hosts: 127.0.0.1
-  connection: local
+  hosts: ubuntu@ec2-54-69-98-50.us-west-2.compute.amazonaws.com
   tasks:
     - name: Create security group
       local_action:
@@ -25,4 +24,3 @@
         instance_type: t2.micro
         count: 2 
         wait: yes
-       #register: ec2_info

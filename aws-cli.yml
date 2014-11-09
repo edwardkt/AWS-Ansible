@@ -7,6 +7,8 @@
     - name: Update 
       apt: update_cache=yes
 
+    - name: Install Git
+      apt: pkg=git state=latest
     - name: Install Python PIP
       apt: pkg=python-pip state=latest
 
