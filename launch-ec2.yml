@@ -18,7 +18,7 @@
       local_action:
         module: ec2
         region: us-west-2
-        image: ami-f9165ec9
+        image: ami-11551e21
         keypair: ansible-test 
         group: ansible-test 
         instance_type: t2.micro
