@@ -1,5 +1,5 @@
 ---
-- name: Install AWS CLI
+- name: Install Packages 
   user: ubuntu
   sudo: True
   hosts: all
@@ -7,10 +7,11 @@
     - name: Update 
       apt: update_cache=yes
 
-    - name: Install Git
-      apt: pkg=git state=latest
     - name: Install Python PIP
       apt: pkg=python-pip state=latest
+
+    - name: Install Git
+      apt: pkg=git state=latest
 
     - name: Install boto via PIP
       pip: name=boto state=latest
