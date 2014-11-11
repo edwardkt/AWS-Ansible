@@ -1,6 +1,7 @@
 ---
 - name: Spin up some EC2 instances
-  hosts: ubuntu@ec2-54-68-175-48.us-west-2.compute.amazonaws.com 
+ # hosts: ubuntu@ec2-54-148-18-187.us-west-2.compute.amazonaws.com 
+  hosts: all
   tasks:
     - name: Create security group
       local_action:
@@ -24,6 +25,3 @@
         instance_type: t2.micro
         count: 2 
         wait: yes
-    - name: Add instances to host group
-      local_action: add_host hostname= groupname=ansible-test
-      with_items: ec2.instances
